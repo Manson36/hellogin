@@ -2,7 +2,6 @@ package main
 
 import "github.com/gin-gonic/gin"
 
-
 //请求路由-泛绑定前缀
 func main() {
 	r := gin.Default()

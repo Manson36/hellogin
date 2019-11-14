@@ -18,6 +18,7 @@ func main() {
 	r.POST("/testing", testing)
 
 	//测试一下效果：curl -X GET "http://127.0.0.1:8080/testing?name=wang&address=wuhan&birthday=2006-01-06"
+	//====》这里出现了问题？？？？
 	r.Run()
 }
 
