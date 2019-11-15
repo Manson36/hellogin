@@ -5,7 +5,7 @@ import "github.com/gin-gonic/gin"
 //模板渲染
 func main() {
 	r := gin.Default()
-	r.LoadHTMLGlob("template/*")//这个方法可以将html文件倒入
+	r.LoadHTMLGlob("template/*") //这个方法可以将html文件倒入
 
 	r.GET("/index", func(c *gin.Context) {
 		c.HTML(200, "index.html", gin.H{

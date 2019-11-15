@@ -7,9 +7,9 @@ import (
 
 //参数绑定到结构体的功能
 type Person struct {
-	Name string 		`form:"name"`
-	Address string		`form:"address"`
-	BirthDay time.Time 	`form:"birthday" time_format:"2006-01-02"`//后面的tag是设置time的格式
+	Name     string    `form:"name"`
+	Address  string    `form:"address"`
+	BirthDay time.Time `form:"birthday" time_format:"2006-01-02"` //后面的tag是设置time的格式
 }
 
 func main() {

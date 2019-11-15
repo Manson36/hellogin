@@ -1,10 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
-	"bytes"
 )
 
 //路由请求-获取body内容

@@ -1,13 +1,13 @@
 package main
 
 import (
+	"context"
 	"github.com/gin-gonic/gin"
-	"net/http"
 	"log"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
-	"context"
 	"time"
 )
 
@@ -16,12 +16,12 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/rest", func(c *gin.Context) {
-		time.Sleep(5*time.Second)
+		time.Sleep(5 * time.Second)
 		c.String(200, "hello test")
 	})
 
 	srv := &http.Server{
-		Addr: ":8585",
+		Addr:    ":8585",
 		Handler: r,
 	}
 
@@ -36,7 +36,7 @@ func main() {
 	<-quit
 	log.Println("shutdown server...")
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5 *time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	if err := srv.Shutdown(ctx); err != nil {

@@ -5,9 +5,9 @@ import (
 )
 
 type Person struct {
-	Age int 			`form:"age" binding:"required, gt=10"`//binding:是验证内容，“，”表示同时满足，“|”表示满足一个即可
-	Name string 		`form:"name" binding:"required"`	  //gt=10,表示输入的值要大于10
-	Address string		`form:"address" binding:"required"`
+	Age     int    `form:"age" binding:"required, gt=10"` //binding:是验证内容，“，”表示同时满足，“|”表示满足一个即可
+	Name    string `form:"name" binding:"required"`       //gt=10,表示输入的值要大于10
+	Address string `form:"address" binding:"required"`
 }
 
 func main() {

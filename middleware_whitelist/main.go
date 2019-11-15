@@ -4,11 +4,11 @@ import "github.com/gin-gonic/gin"
 
 func IPAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		ipList := []string {
+		ipList := []string{
 			"127.0.1.1",
 		}
 		flag := false
-		clientIP := c.ClientIP()//获取本机的ip
+		clientIP := c.ClientIP() //获取本机的ip
 
 		for _, host := range ipList {
 			if host == clientIP {

@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"time"
+	"github.com/gin-gonic/gin/binding"
 	"gopkg.in/go-playground/validator.v8"
 	"reflect"
-	"github.com/gin-gonic/gin/binding"
+	"time"
 )
 
 //这里我们要加一个特殊的处理：我们预约要比今天的时间还要大才行
@@ -13,20 +13,20 @@ import (
 //自定义验证器可以在validator-goDoc中查找，需要引入validator的内库
 
 type Booking struct {
-	CheckIn time.Time	`form:"check_in" finding:"required,bookabledate" time_format:"2006-01-02"`
-	CheckOut time.Time	`form:"check_out" finding:"required gt=CheckIn" time_format:"2006-01-02"`
+	CheckIn  time.Time `form:"check_in" finding:"required,bookabledate" time_format:"2006-01-02"`
+	CheckOut time.Time `form:"check_out" finding:"required gt=CheckIn" time_format:"2006-01-02"`
 }
 
-func bookableDate(v *validator.Validate,topStruct reflect.Value, currentStructOrField reflect.Value,
+func bookableDate(v *validator.Validate, topStruct reflect.Value, currentStructOrField reflect.Value,
 	field reflect.Value, fieldType reflect.Type, fieldKind reflect.Kind, param string) bool {
-		if data,ok := field.Interface().(time.Time); ok {
-			today := time.Now()
-			if data.Unix() > today.Unix() {
-				return true
-			}
+	if data, ok := field.Interface().(time.Time); ok {
+		today := time.Now()
+		if data.Unix() > today.Unix() {
+			return true
 		}
+	}
 
-		return false
+	return false
 }
 
 func main() {
@@ -40,7 +40,7 @@ func main() {
 	r.GET("/bookable", func(c *gin.Context) {
 		var b Booking
 		if err := c.ShouldBind(&b); err != nil {
-			c.JSON(500, gin.H{"error":err.Error()})
+			c.JSON(500, gin.H{"error": err.Error()})
 			return
 		}
 		c.JSON(200, gin.H{"message": "ok", "booking": b})
